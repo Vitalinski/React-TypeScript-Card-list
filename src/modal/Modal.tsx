@@ -3,7 +3,7 @@ import Button from "../Button";
 import { useState, useEffect } from "react";
 import {  useSelector } from "react-redux";
 import { RootState, useStoreDispatch } from "../store/store";
-import { closeModal, addCard } from "../store/cardsSlice";
+import {clearNotification, closeModal, addCard, changeCard, changeNotification } from "../store/cardsSlice";
 import Container from "./Container";
 import Input from "./Input";
 
@@ -11,22 +11,26 @@ import Input from "./Input";
 
 const Modal = () => {
 
-
-  const dispatch = useStoreDispatch()
-  const isModalOpen = useSelector((state:RootState)=> state.cardAction.isModalOpen)
-  const currentCard = useSelector((state:RootState)=> state.cardAction.currentCard)
-
   const buttonStyle={
     padding: "18px 30px",
     borderRadius: "15px",
     margin: "12px 0 0 15px "
 
 }
-const [title, setTitle]= useState(currentCard.title||'')
+
+  const dispatch = useStoreDispatch()
+  const isModalOpen = useSelector((state:RootState)=> state.cardAction.isModalOpen)
+  const currentCard = useSelector((state:RootState)=> state.cardAction.currentCard)
+const [title, setTitle]= useState("")
 const [description, setDescription]= useState(currentCard.description|| '')
 const [isTitleValid, setIsTitleValid ] = useState(true)
 const [isDescriptionValid, setIsDescriptionValid ] = useState(true)
+const isEdit= !!currentCard.title
+useEffect(() => {
+  setTitle(currentCard.title !== undefined ? currentCard.title : '');
+  setDescription(currentCard.description !== undefined ? currentCard.description : '');
 
+}, [currentCard]);
 useEffect(() => {
   if (isModalOpen) {
     document.body.style.overflow = 'hidden'; 
@@ -51,6 +55,18 @@ function addNewCard(){
   }
   dispatch(addCard(newCard))
   cleaneAndClose()
+ dispatch(changeNotification('Card has been created'))
+ setTimeout(() => {
+  dispatch(clearNotification())}, 1000);
+}
+function editCard(){
+
+  dispatch(changeCard({id:currentCard.id, title:title, description:description} ))
+  cleaneAndClose()
+  dispatch(changeNotification('Card has been edited'))
+  setTimeout(() => {
+   dispatch(clearNotification())}, 1000);
+
 }
 function validation(){
  
@@ -60,7 +76,7 @@ setIsTitleValid(false)
   else if(description.length===0){
     setIsDescriptionValid(false)
   }
-  else addNewCard()
+  else isEdit?editCard():addNewCard()
 
 }
 function cleaneAndClose(){
@@ -71,13 +87,19 @@ function cleaneAndClose(){
   setDescription('');
   setTitle('')
 }
+
+
+
+const modalTitle= isEdit?'EDIT CARD':" CREATE CARD"
+const modalSubmitText= isEdit?'Save':" Create"
+
   return (
 <>
    {isModalOpen ? (
     <div className="modal" onClick={cleaneAndClose}>
     <Container 
     closeBtn={true}
-    title=" CREATE CARD"
+    title={modalTitle}
     onClick={cleaneAndClose}
     >
       <Input 
@@ -86,7 +108,7 @@ function cleaneAndClose(){
         type="text"
         title="Title"
         value={title}
-        onChange={(e)=>{setTitle(e.target.value)
+        onChange={(e)=>{setTitle(e.target.value.trim())
         setIsTitleValid(true)
         }
         }/>
@@ -95,7 +117,7 @@ function cleaneAndClose(){
         type="text"
         title="Description"
         value={description}
-        onChange={(e)=>{setDescription(e.target.value)
+        onChange={(e)=>{setDescription(e.target.value.trim())
         setIsDescriptionValid(true)
         }
         }/>
@@ -112,7 +134,7 @@ function cleaneAndClose(){
                        disabled={false}
              onClick={validation}
              class="yellow"
-            text="Create"
+            text={modalSubmitText}
             style={buttonStyle}
             />
           </div>

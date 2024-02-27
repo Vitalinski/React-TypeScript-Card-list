@@ -20,6 +20,7 @@ dispatch(openModal())
   return (
     <div className="board">
     <Button 
+    disabled={false}
     onClick={openAdd}
     text='Create card'
     style={buttonStyles}

@@ -3,7 +3,7 @@ import Button from "../Button";
 import { useEffect } from "react";
 import {  useSelector } from "react-redux";
 import { RootState, useStoreDispatch } from "../store/store";
-import { deleteCard, closeDelete } from "../store/cardsSlice";
+import {changeNotification, clearNotification, deleteCard, closeDelete } from "../store/cardsSlice";
 import Container from "./Container";
 
 
@@ -46,6 +46,9 @@ function cleaneAndClose(){
 function toDelete(){
     dispatch(deleteCard())
     cleaneAndClose()
+    dispatch(changeNotification('Card has been delited'))
+    setTimeout(() => {
+     dispatch(clearNotification())}, 1000);
 }
   return (
 <>

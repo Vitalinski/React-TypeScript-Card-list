@@ -14,7 +14,7 @@ const dispatch = useStoreDispatch()
   return (
 <header className='header'>
       <p className="header-email">{userEmail.replace(/"/g, '')}</p>
-   <Link to="/">
+   <Link to="/login">
       <Button 
       disabled={false}
       onClick={()=>dispatch(toClearState())}

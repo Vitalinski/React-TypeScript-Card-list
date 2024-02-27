@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 // import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface Card {
-  id?: number;
-  title?: string;
-  description?: string;
-  author?: string;
+  id: number;
+  title: string;
+  description: string;
+  author: string;
 }
 
 const initialCards: Card[] = [
@@ -34,11 +34,17 @@ const initialCards: Card[] = [
     author: "ppp@gmail.com",
   },
 ];
-const currentCard:Card={}
+export interface CurrentCard {
+  id?: number;
+  title?: string;
+  description?: string;
+}
+const currentCard:CurrentCard={}
 const initialState = {
   initialCards,
   isModalOpen:false,
   userEmail:'',
+  notification:'',
   currentCard,
   isDeleteOpen:false
   
@@ -51,6 +57,13 @@ export const cardsSlice = createSlice({
       localStorage.setItem("userEmail", JSON.stringify(email.payload));
       state.userEmail = email.payload
 
+    },
+    changeNotification(state, info){
+      state.notification=info.payload
+     
+    },
+    clearNotification(state){
+      state.notification=""
     },
     toClearState(){
       localStorage.clear();
@@ -76,6 +89,15 @@ state.isModalOpen=true
 state.initialCards.push(card.payload)
 
     },
+    changeCard(state, info){
+      state.initialCards = state.initialCards.map((card)=>{
+        if(card.id===info.payload.id){
+          card.title=info.payload.title
+          card.description=info.payload.description
+        }
+        return card
+      })
+    },
     openDelete(state){
       state.isDeleteOpen=true
      
@@ -96,6 +118,6 @@ state.initialCards = state.initialCards.filter((card)=>card.id!==state.currentCa
   },
 });
 
-export const { openDelete, changeCurrentCard, closeDelete,toClearState,initialiseUser, openModal, closeModal, addCard, deleteCard } = cardsSlice.actions;
+export const {clearNotification, changeNotification, openDelete, changeCurrentCard,changeCard, closeDelete,toClearState,initialiseUser, openModal, closeModal, addCard, deleteCard } = cardsSlice.actions;
 
 export default cardsSlice.reducer;
