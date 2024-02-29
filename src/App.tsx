@@ -1,18 +1,15 @@
-import { Route, Routes } from "react-router-dom"
-import Dashboard from "./pages/Dashboard"
-import Login from "./pages/Login"
-function App() {
- 
+import { Route, Routes } from 'react-router-dom';
+import Dashboard from '@/components/pages/Dashboard';
+import Login from '@/components/pages/Login';
+import { ROUTES } from './store/routes';
+const App = () => {
   return (
-    <>
-  <Routes>
-    <Route path="/" element={<Login/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/dashboard" element={<Dashboard/>}/>
+    <Routes>
+      <Route path={ROUTES.START} element={<Login />} />
+      <Route path={ROUTES.LOGIN} element={<Login />} />
+      <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+    </Routes>
+  );
+};
 
-  </Routes>
-    </>
-  )
-}
-
-export default App
+export default App;
