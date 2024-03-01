@@ -17,7 +17,7 @@ const Dashboard: FC = () => {
   }, []);
 
   const notification = useSelector((state: RootState) => state.cardAction.notification);
-
+  const status = notification.includes('Something') ? 'error' : 'success';
   return (
     <>
       <Header />
@@ -26,7 +26,7 @@ const Dashboard: FC = () => {
       <DeleteModal />
       {notification && (
         <Container title='Notification' closeBtn={false}>
-          <p className={styles.success}>{notification}</p>
+          <p className={styles[status]}>{notification}</p>
         </Container>
       )}
     </>

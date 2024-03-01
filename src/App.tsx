@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from '@/components/pages/Dashboard';
 import Login from '@/components/pages/Login';
 import { ROUTES } from './store/routes';
+
 const App = () => {
   return (
     <Routes>
@@ -13,3 +14,4 @@ const App = () => {
 };
 
 export default App;
+20;

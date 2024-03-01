@@ -29,7 +29,6 @@ interface ButtonProps {
   style: string;
   class: string;
   onClick: () => void;
-  disabled: boolean;
 }
 interface CardProps {
   title: string;
@@ -37,7 +36,7 @@ interface CardProps {
   id: number;
 }
 interface RootState {
-  initialCards: Card[];
+  waitingMode: boolean;
   isModalOpen: boolean;
   userEmail: string;
   notification: string;

@@ -1,13 +1,15 @@
 import Button from '@/components/Button';
 import Card from '@/components/board//Card';
-import { useSelector } from 'react-redux';
-import { RootState, useStoreDispatch } from '@/store/store';
+import { useStoreDispatch } from '@/store/store';
 import { openModal } from '@/store/cardsSlice';
 import styles from '@/components/board/Board/index.module.scss';
 import { FC } from 'react';
+import { useGetCardsQuery } from '@/store/apiSlice';
+
 const Board: FC = () => {
   const dispatch = useStoreDispatch();
-  const cards = useSelector((state: RootState) => state.cardAction.initialCards);
+  const userEmail: string = localStorage.getItem('userEmail') || '';
+  const { data: cards } = useGetCardsQuery(userEmail.replace(/"/g, ''));
 
   function openAdd() {
     dispatch(openModal());
@@ -15,19 +17,20 @@ const Board: FC = () => {
 
   return (
     <div className={styles.board}>
-      <Button
-        disabled={false}
-        onClick={openAdd}
-        text='Create card'
-        style='boardBtn'
-        class='yellow'
-      />
+      <Button onClick={openAdd} text='Create card' style='boardBtn' class='yellow' />
       <div className={styles.cards}>
-        {cards.map((card) => {
-          return (
-            <Card key={card.id} id={card.id} description={card.description} title={card.title} />
-          );
-        })}
+        {cards?.length
+          ? cards.map((card) => {
+              return (
+                <Card
+                  key={card.id}
+                  id={card.id}
+                  description={card.description}
+                  title={card.title}
+                />
+              );
+            })
+          : 'No cards'}
       </div>
     </div>
   );

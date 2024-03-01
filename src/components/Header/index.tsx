@@ -14,7 +14,6 @@ const Header: FC = () => {
       <p className={styles.email}>{userEmail.replace(/"/g, '')}</p>
       <Link to={ROUTES.LOGIN}>
         <Button
-          disabled={false}
           onClick={() => dispatch(toClearState())}
           text='Log out'
           style='headerBtn'

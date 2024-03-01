@@ -5,14 +5,19 @@ import { RootState, useStoreDispatch } from '@/store/store';
 import {
   clearNotification,
   closeModal,
-  addCard,
-  changeCard,
   changeNotification,
+  changeWaitingMode,
 } from '@/store/cardsSlice';
 import Container from '@/components/modal/Container';
 import Input from '@/components/modal/Input';
 import styles from '@/components/modal/Modal/index.module.scss';
+import { useAddCardMutation, useChangeCardMutation } from '@/store/apiSlice';
 const Modal: FC = () => {
+  const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
+
+  const [addCard] = useAddCardMutation();
+  const [changeCard] = useChangeCardMutation();
+  const userEmail: string = localStorage.getItem('userEmail') || '';
   const dispatch = useStoreDispatch();
   const isModalOpen = useSelector((state: RootState) => state.cardAction.isModalOpen);
   const currentCard = useSelector((state: RootState) => state.cardAction.currentCard);
@@ -39,28 +44,51 @@ const Modal: FC = () => {
     }
   });
 
-  function addNewCard() {
+  const addNewCard = async () => {
     const newCard = {
-      author: 'example.email@gmail.com',
+      author: userEmail.replace(/"/g, ''),
       id: Math.random(),
       title: title,
       description: description,
     };
-    dispatch(addCard(newCard));
+
+    dispatch(changeWaitingMode(true));
+    try {
+      await addCard(newCard).unwrap();
+      dispatch(changeWaitingMode(false));
+      dispatch(changeNotification('Card has been created'));
+    } catch (error) {
+      dispatch(changeWaitingMode(false));
+      dispatch(changeNotification('Something went wrong'));
+    }
     cleaneAndClose();
-    dispatch(changeNotification('Card has been created'));
     setTimeout(() => {
       dispatch(clearNotification());
     }, 1000);
-  }
-  function editCard() {
-    dispatch(changeCard({ id: currentCard.id, title: title, description: description }));
+  };
+  const editCard = async () => {
+    const card = {
+      id: currentCard.id,
+      title: title,
+      description: description,
+    };
+
+    dispatch(changeWaitingMode(true));
+
+    try {
+      await changeCard(card).unwrap();
+      dispatch(changeWaitingMode(false));
+      dispatch(changeNotification('Card has been edited'));
+    } catch (error) {
+      dispatch(changeWaitingMode(false));
+      dispatch(changeNotification('Something went wrong'));
+    }
+
     cleaneAndClose();
-    dispatch(changeNotification('Card has been edited'));
     setTimeout(() => {
       dispatch(clearNotification());
     }, 1000);
-  }
+  };
   function validation() {
     if (title.length === 0) {
       setIsTitleValid(false);
@@ -69,6 +97,7 @@ const Modal: FC = () => {
     } else isEdit ? editCard() : addNewCard();
   }
   function cleaneAndClose() {
+    if (isWaiting) return;
     dispatch(closeModal());
     setIsDescriptionValid(true);
     setIsTitleValid(true);
@@ -106,20 +135,8 @@ const Modal: FC = () => {
             />
 
             <div className={styles.btns}>
-              <Button
-                disabled={false}
-                onClick={cleaneAndClose}
-                class='white'
-                text='Close'
-                style='modalBtn'
-              />
-              <Button
-                disabled={false}
-                onClick={validation}
-                class='yellow'
-                text={modalSubmitText}
-                style='modalBtn'
-              />
+              <Button onClick={cleaneAndClose} class='white' text='Close' style='modalBtn' />
+              <Button onClick={validation} class='yellow' text={modalSubmitText} style='modalBtn' />
             </div>
           </Container>
         </div>
