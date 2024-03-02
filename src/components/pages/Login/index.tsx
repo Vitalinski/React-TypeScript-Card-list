@@ -11,37 +11,35 @@ const Login: FC = () => {
 
   const dispatch = useStoreDispatch();
   const navigate = useNavigate();
-  const  login=()=> {
+  const login = () => {
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     if (isValidEmail) {
       dispatch(initialiseUser(email));
       navigate('/dashboard');
     }
     setIsValid(isValidEmail);
-  }
+  };
   return (
-    
-      <Container closeBtn={false} title='LOGIN FORM'>
-        <Input
-          isValid={isValid}
-          title='Email'
-          type='email'
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value.trim());
-            setIsValid(true);
-          }}
-        />
+    <Container closeBtn={false} title='LOGIN FORM'>
+      <Input
+        isValid={isValid}
+        title='Email'
+        type='email'
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value.trim());
+          setIsValid(true);
+        }}
+      />
 
-        <Button
-          disabled={email.length === 0}
-          class='button-yellow'
-          style='button-login'
-          onClick={login}
-          text='Submit'
-        />
-      </Container>
-    
+      <Button
+        disabled={email.length === 0}
+        class='button-yellow'
+        style='button-login'
+        onClick={login}
+        text='Submit'
+      />
+    </Container>
   );
 };
 

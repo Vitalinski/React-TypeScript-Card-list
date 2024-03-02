@@ -25,7 +25,7 @@ interface ContainerProps {
 }
 
 interface ButtonProps {
-  disabled?:boolean;
+  disabled?: boolean;
   text: string;
   style: string;
   class: string;

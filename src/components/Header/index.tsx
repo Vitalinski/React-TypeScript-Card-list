@@ -11,7 +11,7 @@ const Header: FC = () => {
 
   return (
     <header className={styles.header}>
-      <p >{userEmail.replace(/"/g, '')}</p>
+      <p>{userEmail.replace(/"/g, '')}</p>
       <Link to={ROUTES.LOGIN}>
         <Button
           onClick={() => dispatch(toClearState())}

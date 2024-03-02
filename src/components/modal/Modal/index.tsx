@@ -89,60 +89,68 @@ const Modal: FC = () => {
       dispatch(clearNotification());
     }, 1000);
   };
-  const  validation=()=> {
+  const validation = () => {
     if (title.length === 0) {
       setIsTitleValid(false);
     } else if (description.length === 0) {
       setIsDescriptionValid(false);
     } else isEdit ? editCard() : addNewCard();
-  }
-  const  cleaneAndClose=()=> {
+  };
+  const cleaneAndClose = () => {
     if (isWaiting) return;
     dispatch(closeModal());
     setIsDescriptionValid(true);
     setIsTitleValid(true);
     setDescription('');
     setTitle('');
-  }
+  };
 
   const modalTitle = isEdit ? 'EDIT CARD' : ' CREATE CARD';
   const modalSubmitText = isEdit ? 'Save' : ' Create';
 
- if(isModalOpen ) return (
-   
-        <div className={styles.modal} onClick={cleaneAndClose}>
-          <Container closeBtn={true} title={modalTitle} onClick={cleaneAndClose}>
-            <Input
-              isValid={isTitleValid}
-              type='text'
-              title='Title'
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value.trim());
-                setIsTitleValid(true);
-              }}
-            />
-            <Input
-              isValid={isDescriptionValid}
-              type='text'
-              title='Description'
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value.trim());
-                setIsDescriptionValid(true);
-              }}
-            />
+  if (isModalOpen)
+    return (
+      <div className={styles.modal} onClick={cleaneAndClose}>
+        <Container closeBtn={true} title={modalTitle} onClick={cleaneAndClose}>
+          <Input
+            isValid={isTitleValid}
+            type='text'
+            title='Title'
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value.trim());
+              setIsTitleValid(true);
+            }}
+          />
+          <Input
+            isValid={isDescriptionValid}
+            type='text'
+            title='Description'
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value.trim());
+              setIsDescriptionValid(true);
+            }}
+          />
 
-            <div className={styles['modal-btns']}>
-              <Button onClick={cleaneAndClose} class='button-white' text='Close' style='button-modal' />
-              <Button onClick={validation} class='button-yellow' text={modalSubmitText} style='button-modal' />
-            </div>
-          </Container>
-        </div>
- 
-  );
-  return null
-
+          <div className={styles['modal-btns']}>
+            <Button
+              onClick={cleaneAndClose}
+              class='button-white'
+              text='Close'
+              style='button-modal'
+            />
+            <Button
+              onClick={validation}
+              class='button-yellow'
+              text={modalSubmitText}
+              style='button-modal'
+            />
+          </div>
+        </Container>
+      </div>
+    );
+  return null;
 };
 
 export default Modal;

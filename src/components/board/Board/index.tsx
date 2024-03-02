@@ -11,9 +11,9 @@ const Board: FC = () => {
   const userEmail: string = localStorage.getItem('userEmail') || '';
   const { data: cards } = useGetCardsQuery(userEmail.replace(/"/g, ''));
 
-  const  openAdd=()=> {
+  const openAdd = () => {
     dispatch(openModal());
-  }
+  };
 
   return (
     <div className={styles.board}>

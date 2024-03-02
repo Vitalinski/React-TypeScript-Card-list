@@ -8,11 +8,11 @@ import { CardProps } from '@/store/interfaces';
 const Card: FC<CardProps> = (props) => {
   const dispatch = useStoreDispatch();
 
-  const deleteOpen=()=> {
+  const deleteOpen = () => {
     dispatch(changeCurrentCard({ id: props.id, title: props.title }));
     dispatch(openDelete());
-  }
-const  editOpen=()=> {
+  };
+  const editOpen = () => {
     dispatch(
       changeCurrentCard({
         id: props.id,
@@ -21,7 +21,7 @@ const  editOpen=()=> {
       }),
     );
     dispatch(openModal());
-  }
+  };
   return (
     <div className={styles.card}>
       <div className={styles.content}>
@@ -29,14 +29,8 @@ const  editOpen=()=> {
         <p className={styles.description}>{props.description}</p>
       </div>
       <div className={styles.footer}>
-        <Button  onClick={editOpen} class='button-yellow' text='Edit' style='button-card' />
-        <Button
-        
-          onClick={deleteOpen}
-          class='button-yellow'
-          text='Delete'
-          style='button-card'
-        />
+        <Button onClick={editOpen} class='button-yellow' text='Edit' style='button-card' />
+        <Button onClick={deleteOpen} class='button-yellow' text='Delete' style='button-card' />
       </div>
     </div>
   );

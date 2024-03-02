@@ -33,10 +33,10 @@ const DeleteModal: FC = () => {
       cleaneAndClose();
     }
   });
-  const cleaneAndClose=()=> {
+  const cleaneAndClose = () => {
     if (isWaiting) return;
     dispatch(closeDelete());
-  }
+  };
   const toDelete = async () => {
     if (typeof id === 'number') {
       dispatch(changeWaitingMode(true));
@@ -61,7 +61,12 @@ const DeleteModal: FC = () => {
         <Container closeBtn={true} title=' DELETE CARD' onClick={cleaneAndClose}>
           <p className={styles['modal-info']}>Are you sure you want to delete card “{title}”?</p>
           <div className={styles['modal-btns']}>
-            <Button onClick={cleaneAndClose} class='button-white' text='Close' style='button-modal' />
+            <Button
+              onClick={cleaneAndClose}
+              class='button-white'
+              text='Close'
+              style='button-modal'
+            />
             <Button onClick={toDelete} class='button-yellow' text='Delete' style='button-modal' />
           </div>
         </Container>

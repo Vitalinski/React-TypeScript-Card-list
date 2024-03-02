@@ -3,15 +3,20 @@ import styles from '@/components/Button/button.module.scss';
 import { ButtonProps } from '@/store/interfaces';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import classNames from 'classnames';
 
 const Button: FC<ButtonProps> = (props) => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
-
+  const buttonClass = classNames(
+    styles.button,
+    styles[props.class],
+    styles[props.style]
+  );
   return (
     <button
       onClick={props.onClick}
-      className={`${styles.button} ${styles[props.class]} ${styles[props.style]}`}
-      disabled={isWaiting||props.disabled}
+      className={buttonClass}
+      disabled={isWaiting || props.disabled}
     >
       {props.text}
     </button>
