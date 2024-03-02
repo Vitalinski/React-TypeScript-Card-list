@@ -108,9 +108,8 @@ const Modal: FC = () => {
   const modalTitle = isEdit ? 'EDIT CARD' : ' CREATE CARD';
   const modalSubmitText = isEdit ? 'Save' : ' Create';
 
-  return (
-    <>
-      {isModalOpen ? (
+ if(isModalOpen ) return (
+   
         <div className={styles.modal} onClick={cleaneAndClose}>
           <Container closeBtn={true} title={modalTitle} onClick={cleaneAndClose}>
             <Input
@@ -140,9 +139,10 @@ const Modal: FC = () => {
             </div>
           </Container>
         </div>
-      ) : null}
-    </>
+ 
   );
+  return null
+
 };
 
 export default Modal;

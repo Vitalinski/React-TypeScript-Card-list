@@ -20,7 +20,7 @@ const Login: FC = () => {
     setIsValid(isValidEmail);
   }
   return (
-    <>
+    
       <Container closeBtn={false} title='LOGIN FORM'>
         <Input
           isValid={isValid}
@@ -41,7 +41,7 @@ const Login: FC = () => {
           text='Submit'
         />
       </Container>
-    </>
+    
   );
 };
 
