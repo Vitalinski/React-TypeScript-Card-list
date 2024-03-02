@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { useState, useEffect, FC } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useStoreDispatch } from '@/store/store';
+import { RootState, useStoreDispatch } from '@/store';
 import {
   clearNotification,
   closeModal,

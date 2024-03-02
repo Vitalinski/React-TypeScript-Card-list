@@ -6,7 +6,7 @@ import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import Container from '@/components/modal/Container';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { RootState } from '@/store';
 import styles from '@/components/pages/Dashboard/dashboard.module.scss';
 const Dashboard: FC = () => {
   const navigate = useNavigate();

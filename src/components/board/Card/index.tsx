@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Button from '@/components/Button';
-import { useStoreDispatch } from '@/store/store';
+import { useStoreDispatch } from '@/store';
 import { openDelete, openModal, changeCurrentCard } from '@/store/cards';
 import styles from '@/components/board/Card/card.module.scss';
 import { CardProps } from '@/store/cards/cards.types';

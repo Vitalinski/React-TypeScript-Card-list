@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from '@/components/modal/Container/container.module.scss';
 import { ContainerProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { RootState } from '@/store';
 
 const Container: FC<ContainerProps> = (props) => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);

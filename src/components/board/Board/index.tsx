@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Card from '@/components/board//Card';
-import { useStoreDispatch } from '@/store/store';
+import { useStoreDispatch } from '@/store';
 import { openModal } from '@/store/cards';
 import styles from '@/components/board/Board/board.module.scss';
 import { FC } from 'react';

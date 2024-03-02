@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CurrentCard, RootState } from './cards.types';
+import { CurrentCard, RootState } from '@/store/cards/cards.types';
 import {
   ChangeCurrentCard,
   InitialiseUser,

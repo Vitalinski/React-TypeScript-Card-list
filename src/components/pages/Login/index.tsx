@@ -3,7 +3,7 @@ import Container from '@/components/modal/Container';
 import Input from '@/components/modal/Input';
 import Button from '@/components/Button';
 import { useNavigate } from 'react-router-dom';
-import { useStoreDispatch } from '@/store/store';
+import { useStoreDispatch } from '@/store';
 import { initialiseUser } from '@/store/cards';
 const Login: FC = () => {
   const [email, setEmail] = useState('');

@@ -1,4 +1,4 @@
-import { CurrentCard, RootState } from './cards.types';
+import { CurrentCard, RootState } from '@/store/cards/cards.types';
 
 const ChangeWaitingMode = (state: RootState, boolean: { payload: boolean }) => {
   state.waitingMode = boolean.payload;

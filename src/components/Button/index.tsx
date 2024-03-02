@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from '@/components/Button/button.module.scss';
 import { ButtonProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { RootState } from '@/store';
 import classNames from 'classnames';
 
 const Button: FC<ButtonProps> = (props) => {
