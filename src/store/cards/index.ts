@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CurrentCard, RootState } from './interfaces';
-import { ChangeCurrentCard, InitialiseUser, ChangeWaitingMode } from './cardActions';
+import { CurrentCard, RootState } from './cards.types';
 import {
+  ChangeCurrentCard,
+  InitialiseUser,
+  ChangeWaitingMode,
   ChangeNotification,
   ClearNotification,
   CloseDelete,
   CloseModal,
   OpenDelete,
   OpenModal,
-} from './modalActions';
+} from './card.reducers';
 
 const currentCard: CurrentCard = {};
 

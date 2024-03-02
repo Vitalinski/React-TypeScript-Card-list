@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from '@/components/modal/Input/input.module.scss';
-import { InputProps } from '@/store/interfaces';
+import { InputProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import classNames from 'classnames';

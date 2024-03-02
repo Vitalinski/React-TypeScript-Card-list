@@ -7,10 +7,10 @@ import {
   changeNotification,
   clearNotification,
   closeDelete,
-} from '@/store/cardsSlice';
+} from '@/store/cards';
 import Container from '@/components/modal/Container';
 import styles from '@/components/modal/DeleteModal/delete.module.scss';
-import { useDeleteCardMutation } from '@/store/apiSlice';
+import { useDeleteCardMutation } from '@/store/cards/cards.apiCalls';
 const DeleteModal: FC = () => {
   const [deleteCard] = useDeleteCardMutation();
   const dispatch = useStoreDispatch();

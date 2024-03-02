@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import Button from '@/components/Button';
 import { useStoreDispatch } from '@/store/store';
-import { openDelete, openModal, changeCurrentCard } from '@/store/cardsSlice';
+import { openDelete, openModal, changeCurrentCard } from '@/store/cards';
 import styles from '@/components/board/Card/card.module.scss';
-import { CardProps } from '@/store/interfaces';
+import { CardProps } from '@/store/cards/cards.types';
 
 const Card: FC<CardProps> = (props) => {
   const dispatch = useStoreDispatch();

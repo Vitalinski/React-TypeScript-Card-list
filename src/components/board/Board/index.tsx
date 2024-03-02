@@ -1,10 +1,10 @@
 import Button from '@/components/Button';
 import Card from '@/components/board//Card';
 import { useStoreDispatch } from '@/store/store';
-import { openModal } from '@/store/cardsSlice';
+import { openModal } from '@/store/cards';
 import styles from '@/components/board/Board/board.module.scss';
 import { FC } from 'react';
-import { useGetCardsQuery } from '@/store/apiSlice';
+import { useGetCardsQuery } from '@/store/cards/cards.apiCalls';
 
 const Board: FC = () => {
   const dispatch = useStoreDispatch();

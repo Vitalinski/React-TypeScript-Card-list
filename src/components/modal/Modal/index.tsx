@@ -7,11 +7,11 @@ import {
   closeModal,
   changeNotification,
   changeWaitingMode,
-} from '@/store/cardsSlice';
+} from '@/store/cards';
 import Container from '@/components/modal/Container';
 import Input from '@/components/modal/Input';
 import styles from '@/components/modal/Modal/modal.module.scss';
-import { useAddCardMutation, useChangeCardMutation } from '@/store/apiSlice';
+import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.apiCalls';
 const Modal: FC = () => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
 
@@ -117,7 +117,7 @@ const Modal: FC = () => {
             type='text'
             title='Title'
             value={title}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setTitle(e.target.value.trim());
               setIsTitleValid(true);
             }}
@@ -127,7 +127,7 @@ const Modal: FC = () => {
             type='text'
             title='Description'
             value={description}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setDescription(e.target.value.trim());
               setIsDescriptionValid(true);
             }}

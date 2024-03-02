@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from '@/components/Button/button.module.scss';
-import { ButtonProps } from '@/store/interfaces';
+import { ButtonProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import classNames from 'classnames';

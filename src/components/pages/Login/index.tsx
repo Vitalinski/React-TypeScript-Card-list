@@ -4,7 +4,7 @@ import Input from '@/components/modal/Input';
 import Button from '@/components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useStoreDispatch } from '@/store/store';
-import { initialiseUser } from '@/store/cardsSlice';
+import { initialiseUser } from '@/store/cards';
 const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(true);
@@ -26,7 +26,7 @@ const Login: FC = () => {
         title='Email'
         type='email'
         value={email}
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setEmail(e.target.value.trim());
           setIsValid(true);
         }}
