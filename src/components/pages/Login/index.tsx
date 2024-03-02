@@ -11,7 +11,7 @@ const Login: FC = () => {
 
   const dispatch = useStoreDispatch();
   const navigate = useNavigate();
-  function login() {
+  const  login=()=> {
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     if (isValidEmail) {
       dispatch(initialiseUser(email));

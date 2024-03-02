@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from '@/components/modal/Input/index.module.scss';
+import styles from '@/components/modal/Input/input.module.scss';
 import { InputProps } from '@/store/interfaces';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';

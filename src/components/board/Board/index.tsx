@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import Card from '@/components/board//Card';
 import { useStoreDispatch } from '@/store/store';
 import { openModal } from '@/store/cardsSlice';
-import styles from '@/components/board/Board/index.module.scss';
+import styles from '@/components/board/Board/board.module.scss';
 import { FC } from 'react';
 import { useGetCardsQuery } from '@/store/apiSlice';
 
@@ -11,7 +11,7 @@ const Board: FC = () => {
   const userEmail: string = localStorage.getItem('userEmail') || '';
   const { data: cards } = useGetCardsQuery(userEmail.replace(/"/g, ''));
 
-  function openAdd() {
+  const  openAdd=()=> {
     dispatch(openModal());
   }
 

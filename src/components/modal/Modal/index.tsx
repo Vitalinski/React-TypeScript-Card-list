@@ -10,7 +10,7 @@ import {
 } from '@/store/cardsSlice';
 import Container from '@/components/modal/Container';
 import Input from '@/components/modal/Input';
-import styles from '@/components/modal/Modal/index.module.scss';
+import styles from '@/components/modal/Modal/modal.module.scss';
 import { useAddCardMutation, useChangeCardMutation } from '@/store/apiSlice';
 const Modal: FC = () => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
@@ -89,14 +89,14 @@ const Modal: FC = () => {
       dispatch(clearNotification());
     }, 1000);
   };
-  function validation() {
+  const  validation=()=> {
     if (title.length === 0) {
       setIsTitleValid(false);
     } else if (description.length === 0) {
       setIsDescriptionValid(false);
     } else isEdit ? editCard() : addNewCard();
   }
-  function cleaneAndClose() {
+  const  cleaneAndClose=()=> {
     if (isWaiting) return;
     dispatch(closeModal());
     setIsDescriptionValid(true);

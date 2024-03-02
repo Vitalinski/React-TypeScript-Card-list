@@ -2,17 +2,17 @@ import { FC } from 'react';
 import Button from '@/components/Button';
 import { useStoreDispatch } from '@/store/store';
 import { openDelete, openModal, changeCurrentCard } from '@/store/cardsSlice';
-import styles from '@/components/board/Card/index.module.scss';
+import styles from '@/components/board/Card/card.module.scss';
 import { CardProps } from '@/store/interfaces';
 
 const Card: FC<CardProps> = (props) => {
   const dispatch = useStoreDispatch();
 
-  function deleteOpen() {
+  const deleteOpen=()=> {
     dispatch(changeCurrentCard({ id: props.id, title: props.title }));
     dispatch(openDelete());
   }
-  function editOpen() {
+const  editOpen=()=> {
     dispatch(
       changeCurrentCard({
         id: props.id,

@@ -9,7 +9,7 @@ import {
   closeDelete,
 } from '@/store/cardsSlice';
 import Container from '@/components/modal/Container';
-import styles from '@/components/modal/DeleteModal/index.module.scss';
+import styles from '@/components/modal/DeleteModal/delete.module.scss';
 import { useDeleteCardMutation } from '@/store/apiSlice';
 const DeleteModal: FC = () => {
   const [deleteCard] = useDeleteCardMutation();
@@ -33,8 +33,7 @@ const DeleteModal: FC = () => {
       cleaneAndClose();
     }
   });
-
-  function cleaneAndClose() {
+  const cleaneAndClose=()=> {
     if (isWaiting) return;
     dispatch(closeDelete());
   }
