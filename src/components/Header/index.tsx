@@ -11,13 +11,13 @@ const Header: FC = () => {
 
   return (
     <header className={styles.header}>
-      <p className={styles.email}>{userEmail.replace(/"/g, '')}</p>
+      <p >{userEmail.replace(/"/g, '')}</p>
       <Link to={ROUTES.LOGIN}>
         <Button
           onClick={() => dispatch(toClearState())}
           text='Log out'
-          style='headerBtn'
-          class='yellow'
+          style='button-header'
+          class='button-yellow'
         />
       </Link>
     </header>

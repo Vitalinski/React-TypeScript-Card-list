@@ -9,13 +9,13 @@ const Input: FC<InputProps> = (props) => {
 
   return (
     <div>
-      <p className={`${styles.text} ${props.isValid ? '' : styles.invalidText}`}>{props.title}</p>
+      <p className={`${styles.text} ${props.isValid ? '' : styles['text-invalid']}`}>{props.title}</p>
       <input
         disabled={isWaiting}
         type='text'
         value={props.value}
         onChange={props.onChange}
-        className={`${styles.input} ${props.isValid ? '' : styles.invalidInput}`}
+        className={`${styles.input} ${props.isValid ? '' : styles['input-invalid']}`}
       />
     </div>
   );

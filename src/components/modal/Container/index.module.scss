@@ -1,5 +1,10 @@
+@import'@/colors.scss' ;
+
+
+
+
 .content{
-    box-shadow: 0 0 25px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 25px 1px $shadow-color;
     text-align: center;
     position: fixed;
     top: 50%;
@@ -10,30 +15,28 @@
     background: white;
     padding: 30px 70px ;
 
-
-
-    
-  }   
-   .btn{
-    border: none;
-    border-radius: 100%;
-background-color: #fb2828;
+&-btn{
+  border: none;
+  border-radius: 100%;
+background-color: $closeBtn-color;
 width: 20px;
 height: 20px;
 position: absolute;
 top: 10px;
 right: 10px;
 &:disabled{
-  border: 0.50px solid #a4a4a4;
-  pointer-events: none;
-background: #d7d7d7;
-opacity: 0.5;
+border: 0.50px solid $button-invalid-border-color;
+pointer-events: none;
+background: $button-invalid-color
 }
-  }
-  .title{
-    font-weight: 900;
+}
+&-title{
+  font-weight: 900;
 font-size: 30px;
 text-align: center;
 margin-bottom: 30px;
-  }
+}
+    
+  }   
+
   

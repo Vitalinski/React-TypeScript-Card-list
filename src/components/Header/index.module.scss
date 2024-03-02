@@ -1,11 +1,12 @@
+@import'@/colors.scss' ;
+
 .header {
-  background: #e7e7e7;
+  background: $gray-color;
   height: 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px;
+
 }
-.email {
-  font-weight: 700;
-}
+

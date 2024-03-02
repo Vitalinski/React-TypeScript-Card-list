@@ -1,29 +1,31 @@
+@import '@/colors.scss';
 .text{
     text-align: left;
-color: #616161;
+color: $light-text-color;
 margin-bottom: 9px;
+&-invalid{
+  color: $invalid-color;
   }
-.invalidText{
-    color: #ff4141;
-    }
+  }
     .input{
-        border: 1px solid #cfcfcf;
+        border: 1px solid $input-border-color;
         padding: 18px;
         
       border-radius: 6px;
       width: 560px;
       height: 60px;
       margin-bottom: 18px;
-      }
-      .input:focus{
-        border-color: #f6ab1a;
+      &:focus{
+        border-color: $yellow-hover-color;
         outline: none;
       
         }
+
+      &-invalid{
+        border: 1px solid  $invalid-color;
+        background: $invalid-background-color;
+        color:  $invalid-color;
+    }
+      }
       
       
-.invalidInput{
-    border: 1px solid #ff4141;
-    background: #fcc;
-    color: #ff4141;
-}

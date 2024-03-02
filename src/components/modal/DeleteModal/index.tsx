@@ -60,10 +60,10 @@ const DeleteModal: FC = () => {
     return (
       <div className={styles.modal} onClick={cleaneAndClose}>
         <Container closeBtn={true} title=' DELETE CARD' onClick={cleaneAndClose}>
-          <p className={styles.info}>Are you sure you want to delete card “{title}”?</p>
-          <div className={styles.btns}>
-            <Button onClick={cleaneAndClose} class='white' text='Close' style='modalBtn' />
-            <Button onClick={toDelete} class='yellow' text='Delete' style='modalBtn' />
+          <p className={styles['modal-info']}>Are you sure you want to delete card “{title}”?</p>
+          <div className={styles['modal-btns']}>
+            <Button onClick={cleaneAndClose} class='button-white' text='Close' style='button-modal' />
+            <Button onClick={toDelete} class='button-yellow' text='Delete' style='button-modal' />
           </div>
         </Container>
       </div>

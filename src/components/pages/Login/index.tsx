@@ -35,8 +35,8 @@ const Login: FC = () => {
 
         <Button
           disabled={email.length === 0}
-          class='yellow'
-          style='loginBtn'
+          class='button-yellow'
+          style='button-login'
           onClick={login}
           text='Submit'
         />

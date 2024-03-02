@@ -29,13 +29,13 @@ const Card: FC<CardProps> = (props) => {
         <p className={styles.description}>{props.description}</p>
       </div>
       <div className={styles.footer}>
-        <Button disabled={false} onClick={editOpen} class='yellow' text='Edit' style='cardBtn' />
+        <Button  onClick={editOpen} class='button-yellow' text='Edit' style='button-card' />
         <Button
-          disabled={false}
+        
           onClick={deleteOpen}
-          class='yellow'
+          class='button-yellow'
           text='Delete'
-          style='cardBtn'
+          style='button-card'
         />
       </div>
     </div>

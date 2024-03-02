@@ -1,11 +1,13 @@
+@import "@/colors";
 .modal {
   position: fixed;
   top: 0;
   min-height: 100vh;
   min-width: 100vw;
-  background: rgba(0, 0, 0, 0.54);
-}
-.btns {
-  display: flex;
-  justify-content: end;
+  background: $modal-background-color;
+  &-btns {
+    display: flex;
+    justify-content: end;
+  }
+  
 }

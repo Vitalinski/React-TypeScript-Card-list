@@ -11,7 +11,7 @@ const Button: FC<ButtonProps> = (props) => {
     <button
       onClick={props.onClick}
       className={`${styles.button} ${styles[props.class]} ${styles[props.style]}`}
-      disabled={isWaiting}
+      disabled={isWaiting||props.disabled}
     >
       {props.text}
     </button>

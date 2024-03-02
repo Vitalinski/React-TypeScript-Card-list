@@ -134,9 +134,9 @@ const Modal: FC = () => {
               }}
             />
 
-            <div className={styles.btns}>
-              <Button onClick={cleaneAndClose} class='white' text='Close' style='modalBtn' />
-              <Button onClick={validation} class='yellow' text={modalSubmitText} style='modalBtn' />
+            <div className={styles['modal-btns']}>
+              <Button onClick={cleaneAndClose} class='button-white' text='Close' style='button-modal' />
+              <Button onClick={validation} class='button-yellow' text={modalSubmitText} style='button-modal' />
             </div>
           </Container>
         </div>

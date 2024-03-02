@@ -1,61 +1,64 @@
+@import'@/colors.scss' ;
+
 .button {
     font-weight: 700;
     text-align: center;
-    color: #000;
     cursor: pointer;
 
 
     &:disabled{
-      border: 0.50px solid #a4a4a4;
+      border: 0.50px solid $button-invalid-border-color;
       pointer-events: none;
-  background: #d7d7d7;
+  background: $button-invalid-color;
   opacity: 0.5;
     }
+
+    &-yellow {
+      background: $yellow-color;
+      border: none;
+      &:hover {
+        background: $yellow-hover-color;
+      }
+      &:active {
+        background: $yellow-acrive-color;
+      }
+    }
+    &-white {
+      border: 0.5px solid $whiteBtn-border-color;
+      &:hover {
+        background: $whiteBtn-hover-color;
+      }
+      &:active {
+        background: $whiteBtn-active-color;
+      }
+    }
+    &-login{
+      border-radius: 15px;
+      width: 234px;
+      height: 61px;
+    };
+    
+    &-modal{
+      padding: 18px 30px;
+      border-radius: 15px;
+      margin: 12px 0 0 15px ;
+    };
+     &-header{
+      border-radius: 15px;
+      width: 202px;
+      height: 61px;
+    };
+  &-board {
+      border-radius: 15px;
+      width: 202px;
+      height: 61px;
+      margin: 30px 0;
+    };
+   &-card{
+      padding: 18px 30px;
+      border-radius: 5px;
+      margin: 15px 15px 15px 0;
+    };
   }
   
-  .yellow {
-    background: #f6b91a;
-    border: none;
-    &:hover {
-      background: #f6ab1a;
-    }
-    &:active {
-      background: #f6911a;
-    }
-  }
-  .white {
-    border: 0.5px solid #9d9d9d;
-    &:hover {
-      background: #dfdfdf;
-    }
-    &:active {
-      background: #bebebe;
-    }
-  }
-  .loginBtn{
-    border-radius: 15px;
-    width: 234px;
-    height: 61px;
-  };
   
-  .modalBtn{
-    padding: 18px 30px;
-    border-radius: 15px;
-    margin: 12px 0 0 15px ;
-  };
-   .headerBtn{
-    border-radius: 15px;
-    width: 202px;
-    height: 61px;
-  };
-.boardBtn {
-    border-radius: 15px;
-    width: 202px;
-    height: 61px;
-    margin: 30px 0;
-  };
- .cardBtn{
-    padding: 18px 30px;
-    border-radius: 5px;
-    margin: 15px 15px 15px 0;
-  };

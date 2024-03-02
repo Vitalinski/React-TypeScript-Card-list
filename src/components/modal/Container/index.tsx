@@ -10,9 +10,9 @@ const Container: FC<ContainerProps> = (props) => {
   return (
     <div className={styles.content} onClick={(e) => e.stopPropagation()}>
       {props.closeBtn && (
-        <button className={styles.btn} disabled={isWaiting} onClick={props.onClick}></button>
+        <button className={styles['content-btn']} disabled={isWaiting} onClick={props.onClick}></button>
       )}
-      <h2 className={styles.title}>{props.title}</h2>
+      <h2 className={styles['content-title']}>{props.title}</h2>
       {props.children}
     </div>
   );

@@ -1,3 +1,4 @@
+@import'@/colors.scss' ;
 
 .card{
     border-radius: 5px;
@@ -5,7 +6,7 @@
   max-width: 560px;
   height: 330px;
   max-height: 330px;
-  background: #efefef;
+  background: $card-background-color;
   margin: 0 35px 40px 0;
 }
   .content{
@@ -21,14 +22,14 @@
 .description{
     font-weight: 700;
   font-size: 16px;
-  color: #555;
+  color: $description-color;
   overflow-wrap: break-word;
   max-height: 144px;
   overflow: auto;
   }
 .footer{
     height: 91px;
-    background: #d9d9d9;
+    background:$dark-gray-color;
     display: flex;
     justify-content: end;
   }
