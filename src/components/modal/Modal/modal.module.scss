@@ -1,12 +1,6 @@
 @import '@/colors';
-.modal {
-  position: fixed;
-  top: 0;
-  min-height: 100vh;
-  min-width: 100vw;
-  background: $modal-background-color;
-  &-btns {
+.btns {
     display: flex;
     justify-content: end;
   }
-}
+

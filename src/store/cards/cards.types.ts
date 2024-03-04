@@ -31,6 +31,11 @@ interface ButtonProps {
   class: string;
   onClick: () => void;
 }
+interface OverlayProps {
+  onClick: () => void;
+  children?: React.ReactNode;
+
+}
 interface CardProps {
   title: string;
   description: string;
@@ -45,4 +50,4 @@ interface RootState {
   isDeleteOpen: boolean;
 }
 
-export type { RootState, CardProps, ButtonProps, ContainerProps, CurrentCard, InputProps, Card };
+export type { OverlayProps,RootState, CardProps, ButtonProps, ContainerProps, CurrentCard, InputProps, Card };

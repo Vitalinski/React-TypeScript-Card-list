@@ -12,9 +12,9 @@ import Container from '@/components/modal/Container';
 import Input from '@/components/modal/Input';
 import styles from '@/components/modal/Modal/modal.module.scss';
 import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.apiCalls';
+import Overlay from '@/components/modal/Overlay';
 const Modal: FC = () => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
-
   const [addCard] = useAddCardMutation();
   const [changeCard] = useChangeCardMutation();
   const userEmail: string = localStorage.getItem('userEmail') || '';
@@ -36,14 +36,7 @@ const Modal: FC = () => {
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [isModalOpen]);
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && isModalOpen) {
-      cleaneAndClose();
-    }
-  });
-
+  }, [isModalOpen]);  
   const addNewCard = async () => {
     const newCard = {
       author: userEmail.replace(/"/g, ''),
@@ -110,7 +103,7 @@ const Modal: FC = () => {
 
   if (isModalOpen)
     return (
-      <div className={styles.modal} onClick={cleaneAndClose}>
+  <Overlay onClick={cleaneAndClose}>
         <Container closeBtn={true} title={modalTitle} onClick={cleaneAndClose}>
           <Input
             isValid={isTitleValid}
@@ -133,7 +126,7 @@ const Modal: FC = () => {
             }}
           />
 
-          <div className={styles['modal-btns']}>
+          <div className={styles.btns}>
             <Button
               onClick={cleaneAndClose}
               class='button-white'
@@ -148,7 +141,7 @@ const Modal: FC = () => {
             />
           </div>
         </Container>
-      </div>
+        </Overlay>
     );
   return null;
 };

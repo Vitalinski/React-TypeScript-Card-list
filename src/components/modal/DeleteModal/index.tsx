@@ -1,16 +1,17 @@
 import Button from '@/components/Button';
-import { FC, useEffect } from 'react';
+import { FC , useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useStoreDispatch } from '@/store';
 import {
   changeWaitingMode,
   changeNotification,
   clearNotification,
-  closeDelete,
+  closeModal,
 } from '@/store/cards';
 import Container from '@/components/modal/Container';
 import styles from '@/components/modal/DeleteModal/delete.module.scss';
 import { useDeleteCardMutation } from '@/store/cards/cards.apiCalls';
+import Overlay from '@/components/modal/Overlay';
 const DeleteModal: FC = () => {
   const [deleteCard] = useDeleteCardMutation();
   const dispatch = useStoreDispatch();
@@ -35,7 +36,7 @@ const DeleteModal: FC = () => {
   });
   const cleaneAndClose = () => {
     if (isWaiting) return;
-    dispatch(closeDelete());
+    dispatch(closeModal());
   };
   const toDelete = async () => {
     if (typeof id === 'number') {
@@ -57,10 +58,10 @@ const DeleteModal: FC = () => {
   };
   if (isDeleteOpen) {
     return (
-      <div className={styles.modal} onClick={cleaneAndClose}>
+      <Overlay onClick={cleaneAndClose}>
         <Container closeBtn={true} title=' DELETE CARD' onClick={cleaneAndClose}>
-          <p className={styles['modal-info']}>Are you sure you want to delete card “{title}”?</p>
-          <div className={styles['modal-btns']}>
+          <p className={styles.info}>Are you sure you want to delete card “{title}”?</p>
+          <div className={styles.btns}>
             <Button
               onClick={cleaneAndClose}
               class='button-white'
@@ -70,7 +71,7 @@ const DeleteModal: FC = () => {
             <Button onClick={toDelete} class='button-yellow' text='Delete' style='button-modal' />
           </div>
         </Container>
-      </div>
+        </Overlay>
     );
   }
   return null;

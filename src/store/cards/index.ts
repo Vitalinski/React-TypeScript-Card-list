@@ -6,7 +6,6 @@ import {
   ChangeWaitingMode,
   ChangeNotification,
   ClearNotification,
-  CloseDelete,
   CloseModal,
   OpenDelete,
   OpenModal,
@@ -50,9 +49,7 @@ export const cardsSlice = createSlice({
     openDelete(state) {
       OpenDelete(state);
     },
-    closeDelete(state) {
-      CloseDelete(state);
-    },
+    
     initialiseUser(state, email) {
       InitialiseUser(state, email);
     },
@@ -67,7 +64,6 @@ export const {
   changeNotification,
   openDelete,
   changeCurrentCard,
-  closeDelete,
   toClearState,
   initialiseUser,
   openModal,
