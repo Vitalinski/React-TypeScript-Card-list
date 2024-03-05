@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import Container from '@/components/modal/Container';
-import Input from '@/components/modal/Input';
+import Container from '@/components/Container';
+import Input from '@/components/Input';
 import Button from '@/components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useStoreDispatch } from '@/store';

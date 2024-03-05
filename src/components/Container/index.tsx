@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from '@/components/modal/Container/container.module.scss';
+import styles from '@/components/Container/Container.module.scss';
 import { ContainerProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';

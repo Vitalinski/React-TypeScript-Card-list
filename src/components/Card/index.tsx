@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import Button from '@/components/Button';
 import { useStoreDispatch } from '@/store';
 import { openDelete, openModal, changeCurrentCard } from '@/store/cards';
-import styles from '@/components/board/Card/card.module.scss';
+import styles from '@/components/Card/Card.module.scss';
 import { CardProps } from '@/store/cards/cards.types';
 
 const CardComponent: FC<CardProps> = ({description,id,title}) => {

@@ -1,8 +1,8 @@
 import Button from '@/components/Button';
-import Card from '@/components/board//Card';
+import Card from '@/components/Card';
 import { useStoreDispatch } from '@/store';
 import { openModal } from '@/store/cards';
-import styles from '@/components/board/Board/board.module.scss';
+import styles from '@/components/Board/Board.module.scss';
 import { FC } from 'react';
 import { useGetCardsQuery } from '@/store/cards/cards.apiCalls';
 

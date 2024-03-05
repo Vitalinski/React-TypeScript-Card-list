@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import { useStoreDispatch } from '@/store';
 import { toClearState } from '@/store/cards';
-import styles from '@/components/Header/header.module.scss';
+import styles from '@/components/Header/Header.module.scss';
 import { ROUTES } from '@/store/cards/cards.constants';
 import { FC } from 'react';
 const Header: FC = () => {

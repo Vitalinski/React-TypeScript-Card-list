@@ -8,10 +8,10 @@ import {
   clearNotification,
   closeDelete,
 } from '@/store/cards';
-import Container from '@/components/modal/Container';
-import styles from '@/components/modal/DeleteModal/delete.module.scss';
+import Container from '@/components/Container';
+import styles from '@/components/DeleteModal/DeleteModal.module.scss';
 import { useDeleteCardMutation } from '@/store/cards/cards.apiCalls';
-import Overlay from '@/components/modal/Overlay';
+import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
 const DeleteModal: FC = () => {
   const [deleteCard] = useDeleteCardMutation();
