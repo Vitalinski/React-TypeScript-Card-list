@@ -8,11 +8,12 @@ import Container from '@/components/Container';
 import { useSelector } from 'react-redux';
 import styles from '@/components/pages/Dashboard/Dashboard.module.scss';
 import { ROUTES } from '@/store/cards/cards.constants';
-import { selectNotification } from '@/store/cards/cards.selectors';
+import { selectNotification, selectUserEmail } from '@/store/cards/cards.selectors';
 const Dashboard: FC = () => {
   const navigate = useNavigate();
+  const userEmail = useSelector(selectUserEmail)
   useEffect(() => {
-    if (!localStorage.getItem('userEmail')) {
+    if (!userEmail) {
       navigate(ROUTES.START);
     }
   }, [navigate]);

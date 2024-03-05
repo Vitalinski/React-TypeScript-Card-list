@@ -14,12 +14,11 @@ import styles from '@/components/CreateOrUpdateModal/CreateOrUpdateModal.module.
 import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.apiCalls';
 import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
-import { selectCurrentCard, selectIsModalOpen, selectIsWaiting } from '@/store/cards/cards.selectors';
+import { selectCurrentCard, selectIsModalOpen, selectUserEmail,  } from '@/store/cards/cards.selectors';
 const Modal: FC = () => {
-  const isWaiting = useSelector(selectIsWaiting);
   const [addCard, { isLoading: isAddLoading }] = useAddCardMutation();
   const [changeCard, { isLoading: isChangeLoading }] = useChangeCardMutation();
-  const userEmail: string = localStorage.getItem('userEmail') || '';
+  const userEmail = useSelector(selectUserEmail);
   const dispatch = useStoreDispatch();
   const isModalOpen = useSelector(selectIsModalOpen);
   const currentCard = useSelector(selectCurrentCard);
@@ -83,7 +82,7 @@ const Modal: FC = () => {
     } else isEdit ? editCard() : addNewCard();
   };
   const cleaneAndClose = () => {
-    if (isWaiting) return;
+    if (isAddLoading||isChangeLoading) return;
     dispatch(closeModal());
     setIsDescriptionValid(true);
     setIsTitleValid(true);

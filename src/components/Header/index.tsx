@@ -5,8 +5,10 @@ import { toClearState } from '@/store/cards';
 import styles from '@/components/Header/Header.module.scss';
 import { ROUTES } from '@/store/cards/cards.constants';
 import { FC } from 'react';
+import { selectUserEmail } from '@/store/cards/cards.selectors';
+import { useSelector } from 'react-redux';
 const Header: FC = () => {
-  const userEmail: string = localStorage.getItem('userEmail') || '';
+  const userEmail=useSelector(selectUserEmail);
   const dispatch = useStoreDispatch();
 
   return (

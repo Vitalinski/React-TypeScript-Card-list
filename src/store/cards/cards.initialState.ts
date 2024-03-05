@@ -1,11 +1,11 @@
 import { CurrentCard, RootState } from "./cards.types";
 
 const currentCard: CurrentCard = {};
-
+const userEmail =  localStorage.getItem('userEmail')||''
 export const cardsInitialState: RootState = {
   waitingMode: false,
   isModalOpen: false,
-  userEmail: '',
+  userEmail,
   notification: '',
   currentCard,
   isDeleteOpen: false,

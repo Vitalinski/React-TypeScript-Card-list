@@ -36,8 +36,9 @@ export  const cardsReducers = {
     state.currentCard = {};
   },
   
-  toClearState() {
+  toClearState(state: RootState) {
     localStorage.clear();
+    state.userEmail=''
   },
 
 }

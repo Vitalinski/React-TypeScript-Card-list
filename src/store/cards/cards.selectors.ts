@@ -7,3 +7,4 @@ export const selectIsWaiting = (state: RootState) => state.cardAction.waitingMod
 export const selectIsModalOpen = (state: RootState) => state.cardAction.isModalOpen;
 export const selectCurrentCard = (state: RootState) => state.cardAction.currentCard;
 export const selectNotification = (state: RootState) => state.cardAction.notification;
+export const selectUserEmail = (state: RootState) => state.cardAction.userEmail;
