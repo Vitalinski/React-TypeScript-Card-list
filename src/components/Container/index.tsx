@@ -2,10 +2,10 @@ import { FC } from 'react';
 import styles from '@/components/Container/Container.module.scss';
 import { ContainerProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
+import { selectIsWaiting } from '@/store/cards/cards.selectors';
 
 const Container: FC<ContainerProps> = ({closeBtn,title,children,onClick}) => {
-  const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
+  const isWaiting = useSelector(selectIsWaiting);
 
   return (
     <div className={styles.content} onClick={(e) => e.stopPropagation()}>

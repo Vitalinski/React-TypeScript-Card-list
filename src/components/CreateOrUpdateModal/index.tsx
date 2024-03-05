@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { useState, useEffect, FC } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useStoreDispatch } from '@/store';
+import {  useStoreDispatch } from '@/store';
 import {
   clearNotification,
   closeModal,
@@ -14,14 +14,15 @@ import styles from '@/components/CreateOrUpdateModal/CreateOrUpdateModal.module.
 import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.apiCalls';
 import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
+import { selectCurrentCard, selectIsModalOpen, selectIsWaiting } from '@/store/cards/cards.selectors';
 const Modal: FC = () => {
-  const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
+  const isWaiting = useSelector(selectIsWaiting);
   const [addCard, { isLoading: isAddLoading }] = useAddCardMutation();
   const [changeCard, { isLoading: isChangeLoading }] = useChangeCardMutation();
   const userEmail: string = localStorage.getItem('userEmail') || '';
   const dispatch = useStoreDispatch();
-  const isModalOpen = useSelector((state: RootState) => state.cardAction.isModalOpen);
-  const currentCard = useSelector((state: RootState) => state.cardAction.currentCard);
+  const isModalOpen = useSelector(selectIsModalOpen);
+  const currentCard = useSelector(selectCurrentCard);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState(currentCard.description || '');
   const [isTitleValid, setIsTitleValid] = useState(true);

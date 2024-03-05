@@ -6,9 +6,9 @@ import Modal from '@/components/CreateOrUpdateModal';
 import { useNavigate } from 'react-router-dom';
 import Container from '@/components/Container';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import styles from '@/components/pages/Dashboard/Dashboard.module.scss';
 import { ROUTES } from '@/store/cards/cards.constants';
+import { selectNotification } from '@/store/cards/cards.selectors';
 const Dashboard: FC = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -17,7 +17,7 @@ const Dashboard: FC = () => {
     }
   }, [navigate]);
 
-  const notification = useSelector((state: RootState) => state.cardAction.notification);
+  const notification = useSelector(selectNotification);
   const status = notification.includes('Something') ? 'error' : 'success';
   return (
     <>

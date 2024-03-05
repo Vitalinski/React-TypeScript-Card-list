@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useStoreDispatch } from '@/store';
+import { useStoreDispatch } from '@/store';
 import {
   changeWaitingMode,
   changeNotification,
@@ -13,12 +13,13 @@ import styles from '@/components/DeleteModal/DeleteModal.module.scss';
 import { useDeleteCardMutation } from '@/store/cards/cards.apiCalls';
 import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
+import { selectCurrentCardId, selectCurrentCardTitle, selectIsDeleteOpen } from '@/store/cards/cards.selectors';
 const DeleteModal: FC = () => {
-  const [deleteCard, {isLoading, isSuccess}] = useDeleteCardMutation();
+  const [deleteCard, {isLoading}] = useDeleteCardMutation();
   const dispatch = useStoreDispatch();
-  const isDeleteOpen = useSelector((state: RootState) => state.cardAction.isDeleteOpen);
-  const title = useSelector((state: RootState) => state.cardAction.currentCard.title);
-  const id = useSelector((state: RootState) => state.cardAction.currentCard.id);
+  const isDeleteOpen = useSelector(selectIsDeleteOpen);
+  const title = useSelector(selectCurrentCardTitle);
+  const id = useSelector(selectCurrentCardId);
 
   useEffect(()=>{
     dispatch(changeWaitingMode(isLoading));
@@ -27,7 +28,6 @@ const DeleteModal: FC = () => {
     if (isLoading) return;
     dispatch(closeDelete());
   };
-isSuccess&&console.log('success')
   const toDelete = async () => {
       try {
         await deleteCard(id!).unwrap();

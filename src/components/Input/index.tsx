@@ -2,11 +2,11 @@ import { FC } from 'react';
 import styles from '@/components/Input/Input.module.scss';
 import { InputProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import classNames from 'classnames';
+import { selectIsWaiting } from '@/store/cards/cards.selectors';
 
 const Input: FC<InputProps> = ({isValid,onChange,title,type,value}) => {
-  const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
+  const isWaiting = useSelector(selectIsWaiting);
   const textClass = classNames(
     styles.text,
     { [styles['text-invalid']]: !isValid }      )

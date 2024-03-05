@@ -2,11 +2,11 @@ import { FC } from 'react';
 import styles from '@/components/Button/Button.module.scss';
 import { ButtonProps } from '@/store/cards/cards.types';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import classNames from 'classnames';
+import { selectIsWaiting } from '@/store/cards/cards.selectors';
 
 const Button: FC<ButtonProps> = ({onClick,style,type,children,disabled}) => {
-  const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
+  const isWaiting = useSelector(selectIsWaiting);
   const buttonClass = classNames(
     styles.button,
     styles[type],
