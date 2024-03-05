@@ -10,31 +10,30 @@ import { selectUserEmail } from '@/store/cards/cards.selectors';
 
 const Board: FC = () => {
   const dispatch = useStoreDispatch();
-  const userEmail = useSelector(selectUserEmail)
+  const userEmail = useSelector(selectUserEmail);
   const { data: cards } = useGetCardsQuery(userEmail.replace(/"/g, ''));
 
   const openAdd = () => {
     dispatch(openModal());
   };
+  const userCards = () => {
+    if(cards?.length){
+      return cards.map((card) => {
+        return (
+          <Card key={card.id} id={card.id} description={card.description} title={card.title} />
+        );
+      })
+    } 
+      return <p>No cards</p>;
+  };
 
   return (
     <div className={styles.board}>
-      <Button onClick={openAdd} style='button-board' type='button-yellow' >
+      <Button onClick={openAdd} style='button-board' type='button-yellow'>
         Create card
       </Button>
       <div className={styles.cards}>
-        {cards?.length
-          ? cards.map((card) => {
-              return (
-                <Card
-                  key={card.id}
-                  id={card.id}
-                  description={card.description}
-                  title={card.title}
-                />
-              );
-            })
-          : 'No cards'}
+        {userCards()}
       </div>
     </div>
   );
