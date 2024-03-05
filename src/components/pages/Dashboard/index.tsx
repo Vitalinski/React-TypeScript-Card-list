@@ -8,11 +8,12 @@ import Container from '@/components/modal/Container';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import styles from '@/components/pages/Dashboard/dashboard.module.scss';
+import { ROUTES } from '@/store/cards/cards.constants';
 const Dashboard: FC = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem('userEmail')) {
-      navigate('/');
+      navigate(ROUTES.START);
     }
   }, []);
 

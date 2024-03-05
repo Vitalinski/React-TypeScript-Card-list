@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useStoreDispatch } from '@/store';
 import { initialiseUser } from '@/store/cards';
+import { ROUTES } from '@/store/cards/cards.constants';
 const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(true);
@@ -15,7 +16,7 @@ const Login: FC = () => {
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     if (isValidEmail) {
       dispatch(initialiseUser(email));
-      navigate('/dashboard');
+      navigate(ROUTES.DASHBOARD);
     }
     setIsValid(isValidEmail);
   };
@@ -34,11 +35,12 @@ const Login: FC = () => {
 
       <Button
         disabled={email.length === 0}
-        class='button-yellow'
+        type='button-yellow'
         style='button-login'
         onClick={login}
-        text='Submit'
-      />
+      >
+        Submit
+      </Button>
     </Container>
   );
 };

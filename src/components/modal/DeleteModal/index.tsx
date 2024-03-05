@@ -1,17 +1,18 @@
 import Button from '@/components/Button';
-import { FC , useEffect} from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useStoreDispatch } from '@/store';
 import {
   changeWaitingMode,
   changeNotification,
   clearNotification,
-  closeModal,
+  closeDelete,
 } from '@/store/cards';
 import Container from '@/components/modal/Container';
 import styles from '@/components/modal/DeleteModal/delete.module.scss';
 import { useDeleteCardMutation } from '@/store/cards/cards.apiCalls';
 import Overlay from '@/components/modal/Overlay';
+import { NOTIFICATION } from '@/store/cards/cards.constants';
 const DeleteModal: FC = () => {
   const [deleteCard] = useDeleteCardMutation();
   const dispatch = useStoreDispatch();
@@ -21,40 +22,27 @@ const DeleteModal: FC = () => {
   const title = useSelector((state: RootState) => state.cardAction.currentCard.title);
   const id = useSelector((state: RootState) => state.cardAction.currentCard.id);
 
-  useEffect(() => {
-    if (isDeleteOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isDeleteOpen]);
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && isDeleteOpen) {
-      cleaneAndClose();
-    }
-  });
+
   const cleaneAndClose = () => {
     if (isWaiting) return;
-    dispatch(closeModal());
+    dispatch(closeDelete());
   };
   const toDelete = async () => {
-    if (typeof id === 'number') {
       dispatch(changeWaitingMode(true));
       try {
-        await deleteCard(id).unwrap();
+        await deleteCard(id!).unwrap();
         dispatch(changeWaitingMode(false));
-        dispatch(changeNotification('Card has been deleted'));
+        dispatch(changeNotification(NOTIFICATION.SUCCESS.DELETE));
       } catch (error) {
         dispatch(changeWaitingMode(false));
-        dispatch(changeNotification('Something went wrong'));
+        dispatch(changeNotification(NOTIFICATION.ERROR));
       }
 
       cleaneAndClose();
       setTimeout(() => {
         dispatch(clearNotification());
       }, 1000);
-    }
   };
   if (isDeleteOpen) {
     return (
@@ -64,11 +52,12 @@ const DeleteModal: FC = () => {
           <div className={styles.btns}>
             <Button
               onClick={cleaneAndClose}
-              class='button-white'
-              text='Close'
+              type='button-white'
               style='button-modal'
-            />
-            <Button onClick={toDelete} class='button-yellow' text='Delete' style='button-modal' />
+            > 
+            Close
+            </Button>
+            <Button onClick={toDelete} type='button-yellow'  style='button-modal' >Delete</Button>
           </div>
         </Container>
         </Overlay>

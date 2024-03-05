@@ -17,7 +17,9 @@ const Board: FC = () => {
 
   return (
     <div className={styles.board}>
-      <Button onClick={openAdd} text='Create card' style='button-board' class='button-yellow' />
+      <Button onClick={openAdd} style='button-board' type='button-yellow' >
+        Create card
+      </Button>
       <div className={styles.cards}>
         {cards?.length
           ? cards.map((card) => {

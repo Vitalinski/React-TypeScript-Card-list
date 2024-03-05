@@ -12,7 +12,7 @@ interface CurrentCard {
 
 interface InputProps {
   title: string;
-  type: string;
+  type: "email"|"text";
   value: string;
   isValid: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,10 +26,11 @@ interface ContainerProps {
 
 interface ButtonProps {
   disabled?: boolean;
-  text: string;
   style: string;
-  class: string;
+  type:"button-yellow"|"button-white" ;
   onClick: () => void;
+  children: string;
+
 }
 interface OverlayProps {
   onClick: () => void;

@@ -23,18 +23,21 @@ const OpenModal = (state: RootState) => {
 };
 const CloseModal = (state: RootState) => {
   state.isModalOpen = false;
-  state.isDeleteOpen = false;
   state.currentCard = {};
 };
 const OpenDelete = (state: RootState) => {
   state.isDeleteOpen = true;
 };
-
+const CloseDelete = (state: RootState) => {
+  state.isDeleteOpen = false;
+  state.currentCard = {};
+};
 
 export {
   ChangeNotification,
   ClearNotification,
   CloseModal,
+  CloseDelete,
   OpenDelete,
   OpenModal,
   ChangeWaitingMode,

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from '@/components/pages/Dashboard';
 import Login from '@/components/pages/Login';
-import { ROUTES } from '@/store/routes';
+import { ROUTES } from '@/store/cards/cards.constants';
 
 const App = () => {
   return (
@@ -14,4 +14,3 @@ const App = () => {
 };
 
 export default App;
-20;

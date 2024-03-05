@@ -5,25 +5,25 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import classNames from 'classnames';
 
-const Input: FC<InputProps> = (props) => {
+const Input: FC<InputProps> = ({isValid,onChange,title,type,value}) => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
   const textClass = classNames(
     styles.text,
-    { [styles['text-invalid']]: !props.isValid }      )
+    { [styles['text-invalid']]: !isValid }      )
     const inputClass = classNames(
       styles.input,
-      { [styles['input-invalid']]: !props.isValid }      )
+      { [styles['input-invalid']]: !isValid }      )
       
   return (
     <div>
       <p className={textClass}>
-        {props.title}
+        {title}
       </p>
       <input
         disabled={isWaiting}
-        type='text'
-        value={props.value}
-        onChange={props.onChange}
+        type={type}
+        value={value}
+        onChange={onChange}
         className={inputClass}
       />
     </div>

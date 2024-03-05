@@ -1,23 +1,23 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import Button from '@/components/Button';
 import { useStoreDispatch } from '@/store';
 import { openDelete, openModal, changeCurrentCard } from '@/store/cards';
 import styles from '@/components/board/Card/card.module.scss';
 import { CardProps } from '@/store/cards/cards.types';
 
-const Card: FC<CardProps> = (props) => {
+const CardComponent: FC<CardProps> = ({description,id,title}) => {
   const dispatch = useStoreDispatch();
 
   const deleteOpen = () => {
-    dispatch(changeCurrentCard({ id: props.id, title: props.title }));
+    dispatch(changeCurrentCard({ id: id, title: title }));
     dispatch(openDelete());
   };
   const editOpen = () => {
     dispatch(
       changeCurrentCard({
-        id: props.id,
-        title: props.title,
-        description: props.description,
+        id: id,
+        title: title,
+        description: description,
       }),
     );
     dispatch(openModal());
@@ -25,15 +25,16 @@ const Card: FC<CardProps> = (props) => {
   return (
     <div className={styles.card}>
       <div className={styles.content}>
-        <h3 className={styles.title}>{props.title}</h3>
-        <p className={styles.description}>{props.description}</p>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.description}>{description}</p>
       </div>
       <div className={styles.footer}>
-        <Button onClick={editOpen} class='button-yellow' text='Edit' style='button-card' />
-        <Button onClick={deleteOpen} class='button-yellow' text='Delete' style='button-card' />
+        <Button onClick={editOpen} type='button-yellow'  style='button-card' >Edit</Button>
+        <Button onClick={deleteOpen} type='button-yellow' style='button-card' >Delete</Button>
       </div>
     </div>
   );
 };
+const Card = memo(CardComponent);
 
 export default Card;

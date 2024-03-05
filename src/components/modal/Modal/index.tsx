@@ -13,6 +13,7 @@ import Input from '@/components/modal/Input';
 import styles from '@/components/modal/Modal/modal.module.scss';
 import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.apiCalls';
 import Overlay from '@/components/modal/Overlay';
+import { NOTIFICATION } from '@/store/cards/cards.constants';
 const Modal: FC = () => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
   const [addCard] = useAddCardMutation();
@@ -30,13 +31,6 @@ const Modal: FC = () => {
     setTitle(currentCard.title !== undefined ? currentCard.title : '');
     setDescription(currentCard.description !== undefined ? currentCard.description : '');
   }, [currentCard]);
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalOpen]);  
   const addNewCard = async () => {
     const newCard = {
       author: userEmail.replace(/"/g, ''),
@@ -49,10 +43,10 @@ const Modal: FC = () => {
     try {
       await addCard(newCard).unwrap();
       dispatch(changeWaitingMode(false));
-      dispatch(changeNotification('Card has been created'));
+      dispatch(changeNotification(NOTIFICATION.SUCCESS.ADD));
     } catch (error) {
       dispatch(changeWaitingMode(false));
-      dispatch(changeNotification('Something went wrong'));
+      dispatch(changeNotification(NOTIFICATION.ERROR));
     }
     cleaneAndClose();
     setTimeout(() => {
@@ -71,10 +65,10 @@ const Modal: FC = () => {
     try {
       await changeCard(card).unwrap();
       dispatch(changeWaitingMode(false));
-      dispatch(changeNotification('Card has been edited'));
+      dispatch(changeNotification(NOTIFICATION.SUCCESS.EDIT));
     } catch (error) {
       dispatch(changeWaitingMode(false));
-      dispatch(changeNotification('Something went wrong'));
+      dispatch(changeNotification(NOTIFICATION.ERROR));
     }
 
     cleaneAndClose();
@@ -129,16 +123,18 @@ const Modal: FC = () => {
           <div className={styles.btns}>
             <Button
               onClick={cleaneAndClose}
-              class='button-white'
-              text='Close'
+              type='button-white'
               style='button-modal'
-            />
+            >
+              Close
+            </Button>
             <Button
               onClick={validation}
-              class='button-yellow'
-              text={modalSubmitText}
+              type='button-yellow'
               style='button-modal'
-            />
+            >
+              {modalSubmitText}
+            </Button>
           </div>
         </Container>
         </Overlay>

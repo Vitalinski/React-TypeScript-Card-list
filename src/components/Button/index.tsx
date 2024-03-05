@@ -5,20 +5,20 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import classNames from 'classnames';
 
-const Button: FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = ({onClick,style,type,children,disabled}) => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
   const buttonClass = classNames(
     styles.button,
-    styles[props.class],
-    styles[props.style]
+    styles[type],
+    styles[style]
   );
   return (
     <button
-      onClick={props.onClick}
+      onClick={onClick}
       className={buttonClass}
-      disabled={isWaiting || props.disabled}
+      disabled={isWaiting || disabled}
     >
-      {props.text}
+      {children}
     </button>
   );
 };

@@ -7,9 +7,10 @@ import {
   ChangeNotification,
   ClearNotification,
   CloseModal,
+  CloseDelete,
   OpenDelete,
   OpenModal,
-} from './card.reducers';
+} from './cards.reducers';
 
 const currentCard: CurrentCard = {};
 
@@ -49,6 +50,9 @@ export const cardsSlice = createSlice({
     openDelete(state) {
       OpenDelete(state);
     },
+    closeDelete(state) {
+      CloseDelete(state);
+    },
     
     initialiseUser(state, email) {
       InitialiseUser(state, email);
@@ -68,6 +72,7 @@ export const {
   initialiseUser,
   openModal,
   closeModal,
+  closeDelete,
   changeWaitingMode,
 } = cardsSlice.actions;
 

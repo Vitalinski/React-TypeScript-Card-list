@@ -3,10 +3,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import styles from '@/components/modal/Overlay/overlay.module.scss';
 import { OverlayProps } from '@/store/cards/cards.types';
-const Overlay: FC<OverlayProps> = (props) => {
+const Overlay: FC<OverlayProps> = ({onClick,children}) => {
   const isModalOpen = useSelector((state: RootState) => state.cardAction.isModalOpen);
   const isDeleteOpen = useSelector((state: RootState) => state.cardAction.isDeleteOpen);
-const {onClick} = props;
   const closeOverlay = useCallback(() => {
     onClick();
   }, [onClick]);
@@ -26,7 +25,7 @@ const {onClick} = props;
 
   return (
     <div className={styles.overlay} onClick={closeOverlay}>
-      {props.children}
+      {children}
     </div>
   );
 };
