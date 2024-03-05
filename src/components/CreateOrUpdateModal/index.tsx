@@ -16,8 +16,8 @@ import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
 const Modal: FC = () => {
   const isWaiting = useSelector((state: RootState) => state.cardAction.waitingMode);
-  const [addCard] = useAddCardMutation();
-  const [changeCard] = useChangeCardMutation();
+  const [addCard, { isLoading: isAddLoading }] = useAddCardMutation();
+  const [changeCard, { isLoading: isChangeLoading }] = useChangeCardMutation();
   const userEmail: string = localStorage.getItem('userEmail') || '';
   const dispatch = useStoreDispatch();
   const isModalOpen = useSelector((state: RootState) => state.cardAction.isModalOpen);
@@ -31,6 +31,10 @@ const Modal: FC = () => {
     setTitle(currentCard.title !== undefined ? currentCard.title : '');
     setDescription(currentCard.description !== undefined ? currentCard.description : '');
   }, [currentCard]);
+
+  useEffect(() => {
+    dispatch(changeWaitingMode(isAddLoading || isChangeLoading));
+  }, [isAddLoading, isChangeLoading, dispatch]);
   const addNewCard = async () => {
     const newCard = {
       author: userEmail.replace(/"/g, ''),
@@ -39,13 +43,10 @@ const Modal: FC = () => {
       description: description,
     };
 
-    dispatch(changeWaitingMode(true));
     try {
       await addCard(newCard).unwrap();
-      dispatch(changeWaitingMode(false));
       dispatch(changeNotification(NOTIFICATION.SUCCESS.ADD));
     } catch (error) {
-      dispatch(changeWaitingMode(false));
       dispatch(changeNotification(NOTIFICATION.ERROR));
     }
     cleaneAndClose();
@@ -60,14 +61,11 @@ const Modal: FC = () => {
       description: description,
     };
 
-    dispatch(changeWaitingMode(true));
 
     try {
       await changeCard(card).unwrap();
-      dispatch(changeWaitingMode(false));
       dispatch(changeNotification(NOTIFICATION.SUCCESS.EDIT));
     } catch (error) {
-      dispatch(changeWaitingMode(false));
       dispatch(changeNotification(NOTIFICATION.ERROR));
     }
 
@@ -97,7 +95,7 @@ const Modal: FC = () => {
 
   if (isModalOpen)
     return (
-  <Overlay onClick={cleaneAndClose}>
+      <Overlay onClick={cleaneAndClose}>
         <Container closeBtn={true} title={modalTitle} onClick={cleaneAndClose}>
           <Input
             isValid={isTitleValid}
@@ -121,23 +119,15 @@ const Modal: FC = () => {
           />
 
           <div className={styles.btns}>
-            <Button
-              onClick={cleaneAndClose}
-              type='button-white'
-              style='button-modal'
-            >
+            <Button onClick={cleaneAndClose} type='button-white' style='button-modal'>
               Close
             </Button>
-            <Button
-              onClick={validation}
-              type='button-yellow'
-              style='button-modal'
-            >
+            <Button onClick={validation} type='button-yellow' style='button-modal'>
               {modalSubmitText}
             </Button>
           </div>
         </Container>
-        </Overlay>
+      </Overlay>
     );
   return null;
 };
