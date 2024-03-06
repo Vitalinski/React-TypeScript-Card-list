@@ -4,7 +4,7 @@ import { useStoreDispatch } from '@/store';
 import { openModal } from '@/store/cards';
 import styles from '@/components/Board/Board.module.scss';
 import { FC } from 'react';
-import { useGetCardsQuery } from '@/store/cards/cards.apiCalls';
+import { useGetCardsQuery } from '@/store/cards/cards.endpoints';
 import { useSelector } from 'react-redux';
 import { selectUserEmail } from '@/store/cards/cards.selectors';
 

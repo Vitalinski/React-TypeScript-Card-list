@@ -11,7 +11,7 @@ import {
 import Container from '@/components/Container';
 import Input from '@/components/Input';
 import styles from '@/components/CreateOrUpdateModal/CreateOrUpdateModal.module.scss';
-import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.apiCalls';
+import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.endpoints';
 import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
 import { selectCurrentCard, selectIsModalOpen, selectUserEmail,  } from '@/store/cards/cards.selectors';

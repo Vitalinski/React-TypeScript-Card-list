@@ -10,7 +10,7 @@ import {
 } from '@/store/cards';
 import Container from '@/components/Container';
 import styles from '@/components/DeleteModal/DeleteModal.module.scss';
-import { useDeleteCardMutation } from '@/store/cards/cards.apiCalls';
+import { useDeleteCardMutation } from '@/store/cards/cards.endpoints';
 import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
 import { selectCurrentCardId, selectCurrentCardTitle, selectIsDeleteOpen } from '@/store/cards/cards.selectors';

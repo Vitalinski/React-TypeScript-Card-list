@@ -16,7 +16,7 @@ const Dashboard: FC = () => {
     if (!userEmail) {
       navigate(ROUTES.START);
     }
-  }, [navigate]);
+  }, [navigate, userEmail]);
 
   const notification = useSelector(selectNotification);
   const status = notification.includes('Something') ? 'error' : 'success';
