@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { cardsReducers } from './cards.reducers';
+
 import { cardsInitialState } from './cards.initialState';
+import { cardsReducers } from './cards.reducers';
 
 export const cardsSlice = createSlice({
   name: 'cardsSlice',

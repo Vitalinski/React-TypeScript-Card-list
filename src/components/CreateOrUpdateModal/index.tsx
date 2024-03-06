@@ -1,20 +1,25 @@
 import Button from '@/components/Button';
-import { useState, useEffect, FC } from 'react';
-import { useSelector } from 'react-redux';
-import {  useStoreDispatch } from '@/store';
+import Container from '@/components/Container';
+import styles from '@/components/CreateOrUpdateModal/CreateOrUpdateModal.module.scss';
+import Input from '@/components/Input';
+import Overlay from '@/components/Overlay';
+import { useStoreDispatch } from '@/store';
 import {
-  clearNotification,
-  closeModal,
   changeNotification,
   changeWaitingMode,
+  clearNotification,
+  closeModal,
 } from '@/store/cards';
-import Container from '@/components/Container';
-import Input from '@/components/Input';
-import styles from '@/components/CreateOrUpdateModal/CreateOrUpdateModal.module.scss';
-import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.endpoints';
-import Overlay from '@/components/Overlay';
 import { NOTIFICATION } from '@/store/cards/cards.constants';
-import { selectCurrentCard, selectIsModalOpen, selectUserEmail,  } from '@/store/cards/cards.selectors';
+import { useAddCardMutation, useChangeCardMutation } from '@/store/cards/cards.endpoints';
+import {
+  selectCurrentCard,
+  selectIsModalOpen,
+  selectUserEmail,
+} from '@/store/cards/cards.selectors';
+import { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 const Modal: FC = () => {
   const [addCard, { isLoading: isAddLoading }] = useAddCardMutation();
   const [changeCard, { isLoading: isChangeLoading }] = useChangeCardMutation();
@@ -61,7 +66,6 @@ const Modal: FC = () => {
       description: description,
     };
 
-
     try {
       await changeCard(card).unwrap();
       dispatch(changeNotification(NOTIFICATION.SUCCESS.EDIT));
@@ -82,7 +86,7 @@ const Modal: FC = () => {
     } else isEdit ? editCard() : addNewCard();
   };
   const cleaneAndClose = () => {
-    if (isAddLoading||isChangeLoading) return;
+    if (isAddLoading || isChangeLoading) return;
     dispatch(closeModal());
     setIsDescriptionValid(true);
     setIsTitleValid(true);

@@ -1,24 +1,18 @@
-import { FC } from 'react';
 import styles from '@/components/Input/Input.module.scss';
-import { InputProps } from '@/store/cards/cards.types';
-import { useSelector } from 'react-redux';
-import classNames from 'classnames';
 import { selectIsWaiting } from '@/store/cards/cards.selectors';
+import { InputProps } from '@/store/cards/cards.types';
+import classNames from 'classnames';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 
-const Input: FC<InputProps> = ({isValid,onChange,title,type,value}) => {
+const Input: FC<InputProps> = ({ isValid, onChange, title, type, value }) => {
   const isWaiting = useSelector(selectIsWaiting);
-  const textClass = classNames(
-    styles.text,
-    { [styles['text-invalid']]: !isValid }      )
-    const inputClass = classNames(
-      styles.input,
-      { [styles['input-invalid']]: !isValid }      )
-      
+  const textClass = classNames(styles.text, { [styles['text-invalid']]: !isValid });
+  const inputClass = classNames(styles.input, { [styles['input-invalid']]: !isValid });
+
   return (
     <div>
-      <p className={textClass}>
-        {title}
-      </p>
+      <p className={textClass}>{title}</p>
       <input
         disabled={isWaiting}
         type={type}

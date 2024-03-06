@@ -1,4 +1,5 @@
 {
+  
     "semi": true,
     "singleQuote": true,
     "trailingComma": "all",
@@ -14,5 +15,9 @@
           "parser": "scss"
         }
       }
-    ]
+    ],
+    "importOrder": ["^components/(.*)$", "^[./]" ],
+    "importOrderSeparation": true, 
+    "importOrderSortSpecifiers": true ,
+    "plugins": ["@trivago/prettier-plugin-sort-imports"]
   }

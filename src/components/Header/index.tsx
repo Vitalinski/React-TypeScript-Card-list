@@ -1,14 +1,15 @@
 import Button from '@/components/Button';
-import { Link } from 'react-router-dom';
+import styles from '@/components/Header/Header.module.scss';
 import { useStoreDispatch } from '@/store';
 import { toClearState } from '@/store/cards';
-import styles from '@/components/Header/Header.module.scss';
 import { ROUTES } from '@/store/cards/cards.constants';
-import { FC } from 'react';
 import { selectUserEmail } from '@/store/cards/cards.selectors';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 const Header: FC = () => {
-  const userEmail=useSelector(selectUserEmail);
+  const userEmail = useSelector(selectUserEmail);
   const dispatch = useStoreDispatch();
 
   return (

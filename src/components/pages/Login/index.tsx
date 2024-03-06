@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
+import Button from '@/components/Button';
 import Container from '@/components/Container';
 import Input from '@/components/Input';
-import Button from '@/components/Button';
-import { useNavigate } from 'react-router-dom';
 import { useStoreDispatch } from '@/store';
 import { initialiseUser } from '@/store/cards';
 import { ROUTES } from '@/store/cards/cards.constants';
+import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(true);

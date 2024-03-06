@@ -10,5 +10,4 @@ export const getCardsAPI = () =>
     endpoints: () => ({}),
   });
 
-  export const cardsAPI = getCardsAPI();
-
+export const cardsAPI = getCardsAPI();

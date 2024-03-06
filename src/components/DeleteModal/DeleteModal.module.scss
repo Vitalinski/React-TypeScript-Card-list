@@ -1,13 +1,10 @@
 @import '@/config/colors.scss';
 
-
-
-  .info {
-    color: $light-text-color;
-    text-align: center;
-  }
-  .btns {
-    display: flex;
-    justify-content: center;
-  }
-
+.info {
+  color: $light-text-color;
+  text-align: center;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+}

@@ -1,7 +1,7 @@
-import { Route, Routes } from 'react-router-dom';
 import Dashboard from '@/components/pages/Dashboard';
 import Login from '@/components/pages/Login';
 import { ROUTES } from '@/store/cards/cards.constants';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   return (

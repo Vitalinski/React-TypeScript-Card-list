@@ -12,7 +12,7 @@ interface CurrentCard {
 
 interface InputProps {
   title: string;
-  type: "email"|"text";
+  type: 'email' | 'text';
   value: string;
   isValid: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,15 +27,13 @@ interface ContainerProps {
 interface ButtonProps {
   disabled?: boolean;
   style: string;
-  type:"button-yellow"|"button-white" ;
+  type: 'button-yellow' | 'button-white';
   onClick: () => void;
   children: string;
-
 }
 interface OverlayProps {
   onClick: () => void;
   children?: React.ReactNode;
-
 }
 interface CardProps {
   title: string;
@@ -51,4 +49,13 @@ interface RootState {
   isDeleteOpen: boolean;
 }
 
-export type { OverlayProps,RootState, CardProps, ButtonProps, ContainerProps, CurrentCard, InputProps, Card };
+export type {
+  OverlayProps,
+  RootState,
+  CardProps,
+  ButtonProps,
+  ContainerProps,
+  CurrentCard,
+  InputProps,
+  Card,
+};

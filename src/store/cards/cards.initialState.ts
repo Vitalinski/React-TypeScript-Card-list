@@ -1,7 +1,7 @@
-import { CurrentCard, RootState } from "./cards.types";
+import { CurrentCard, RootState } from './cards.types';
 
 const currentCard: CurrentCard = {};
-const userEmail =  localStorage.getItem('userEmail')||''
+const userEmail = localStorage.getItem('userEmail') || '';
 export const cardsInitialState: RootState = {
   waitingMode: false,
   isModalOpen: false,

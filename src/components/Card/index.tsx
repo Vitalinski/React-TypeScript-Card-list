@@ -1,11 +1,11 @@
-import { FC, memo } from 'react';
 import Button from '@/components/Button';
-import { useStoreDispatch } from '@/store';
-import { openDelete, openModal, changeCurrentCard } from '@/store/cards';
 import styles from '@/components/Card/Card.module.scss';
+import { useStoreDispatch } from '@/store';
+import { changeCurrentCard, openDelete, openModal } from '@/store/cards';
 import { CardProps } from '@/store/cards/cards.types';
+import { FC, memo } from 'react';
 
-const CardComponent: FC<CardProps> = ({description,id,title}) => {
+const CardComponent: FC<CardProps> = ({ description, id, title }) => {
   const dispatch = useStoreDispatch();
 
   const deleteOpen = () => {
@@ -29,8 +29,12 @@ const CardComponent: FC<CardProps> = ({description,id,title}) => {
         <p className={styles.description}>{description}</p>
       </div>
       <div className={styles.footer}>
-        <Button onClick={editOpen} type='button-yellow'  style='button-card' >Edit</Button>
-        <Button onClick={deleteOpen} type='button-yellow' style='button-card' >Delete</Button>
+        <Button onClick={editOpen} type='button-yellow' style='button-card'>
+          Edit
+        </Button>
+        <Button onClick={deleteOpen} type='button-yellow' style='button-card'>
+          Delete
+        </Button>
       </div>
     </div>
   );

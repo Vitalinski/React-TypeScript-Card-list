@@ -1,17 +1,18 @@
-import { FC, useEffect } from 'react';
 import Board from '@/components/Board';
-import Header from '@/components/Header';
-import DeleteModal from '@/components/DeleteModal';
-import Modal from '@/components/CreateOrUpdateModal';
-import { useNavigate } from 'react-router-dom';
 import Container from '@/components/Container';
-import { useSelector } from 'react-redux';
+import Modal from '@/components/CreateOrUpdateModal';
+import DeleteModal from '@/components/DeleteModal';
+import Header from '@/components/Header';
 import styles from '@/components/pages/Dashboard/Dashboard.module.scss';
 import { ROUTES } from '@/store/cards/cards.constants';
 import { selectNotification, selectUserEmail } from '@/store/cards/cards.selectors';
+import { FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 const Dashboard: FC = () => {
   const navigate = useNavigate();
-  const userEmail = useSelector(selectUserEmail)
+  const userEmail = useSelector(selectUserEmail);
   useEffect(() => {
     if (!userEmail) {
       navigate(ROUTES.START);
