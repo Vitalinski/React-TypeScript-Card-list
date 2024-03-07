@@ -1,0 +1,34 @@
+@import '@/config/colors.scss';
+
+.card {
+  border-radius: 5px;
+  min-width: 560px;
+  max-width: 560px;
+  height: 330px;
+  max-height: 330px;
+  background: $card-background-color;
+  margin: 0 35px 40px 0;
+}
+.content {
+  position: relative;
+  padding: 20px 25px 32px;
+  min-height: calc(100% - 91px);
+}
+.title {
+  font-weight: 700;
+  font-size: 36px;
+}
+.description {
+  font-weight: 700;
+  font-size: 16px;
+  color: $description-color;
+  overflow-wrap: break-word;
+  max-height: 144px;
+  overflow: auto;
+}
+.footer {
+  height: 91px;
+  background: $dark-gray-color;
+  display: flex;
+  justify-content: end;
+}
